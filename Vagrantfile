@@ -24,8 +24,8 @@ Vagrant.configure("2") do |config|
     sudo chown -R www-data:www-data /var/www/example/html
     sudo chmod -R 755 /var/www/example/html
 
-    if [ ! -f "/etc/nginx/sites-enabled/example.com" ]; then
-      sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+    if [ ! -f "/etc/nginx/sites-enabled/www.example.com" ]; then
+      sudo ln -s /etc/nginx/sites-available/www.example.com /etc/nginx/sites-enabled/
     fi
 
     sudo systemctl restart nginx
