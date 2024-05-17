@@ -17,15 +17,13 @@ Vagrant.configure("2") do |config|
     sudo mkdir -p /var/www/example/html
 
     cp -vr /vagrant/example.com /etc/nginx/sites-available/
-    # Usuario - > santi | vilches passwd -> password1 | password2
-    sudo cp /vagrant/.htpasswd /etc/nginx/
     sudo cp -r /vagrant/html/* /var/www/example/html
   
     sudo chown -R www-data:www-data /var/www/example/html
     sudo chmod -R 755 /var/www/example/html
 
-    sudo cp -v /vagrant/vsftpd.crt /etc/ssl/certs/vsftpd.crt
-    sudo cp -v /vagrant/vsftpd.key /etc/ssl/private/vsftpd.key
+    sudo cp -v /vagrant/example.com.crt /etc/ssl/certs/example.com.crt
+    sudo cp -v /vagrant/example.com.key /etc/ssl/private/example.com.key
     sudo cp -v /vagrant/vsftpd.conf /etc/vsftpd.conf
 
     if [ ! -f "/etc/nginx/sites-enabled/example.com" ]; then
@@ -33,5 +31,6 @@ Vagrant.configure("2") do |config|
     fi
 
     sudo systemctl restart nginx
+    sudo systemctl status nginx
   SHELL
 end
